@@ -1,0 +1,30 @@
+= Android Boot Camp Training
+
+18 June 2012
+
+*Marius Mailat*, +<marius.mailat@gmail.com>+
+http://marakana.com[Marakana, Inc.]
+
+== Obtaining Course Materials
+
+You can either clone this Git repository:
+
+	git clone git://github.com/marakana/bootcamp-2012-06-18.git
+
+or
+
+	git clone http://github.com/marakana/bootcamp-2012-06-18.git
+
+or download a Zip archive by clicking the link at the top of the page or using the link:
+	
+	https://github.com/marakana/bootcamp-2012-06-18/zipball/master
+
+== Useful Links
+
+Git book: http://git-scm.com/book
+
+Marakana Java Fundamentals Tutorial: http://marakana.com/bookshelf/java_fundamentals_tutorial/index.html
+
+Introduction to Eclipse - Driving Java Productivity: http://mrkn.co/s/video_introduction_to_eclipse_driving_java_productivity,595/index.html
+
+Java Tutorial http://docs.oracle.com/javase/tutorial/
