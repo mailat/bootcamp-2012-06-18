@@ -9,4 +9,12 @@
     <string name="buttonUpdate">Update Status</string>
     <string name="hintText">Please enter your 140 character status.</string>
     <string name="rohanTest">just a test</string>
+    
+    <!-- preference activity -->
+    <string name="titleUsername">Your Username</string>
+    <string name="summaryUsername">Please enter your username.</string>
+    <string name="titlePassword">Your Password</string>
+    <string name="summaryPassword">Please enter your password.</string>
+    <string name="titleApiRoot">API URL Root</string>
+    <string name="summaryApiRoot">Please enter the api Root.</string>
 </resources>

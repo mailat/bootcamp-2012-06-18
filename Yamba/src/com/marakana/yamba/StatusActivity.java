@@ -3,6 +3,7 @@ package com.marakana.yamba;
 import java.util.Properties;
 import winterwell.jtwitter.Twitter;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -47,6 +48,9 @@ public class StatusActivity extends Activity implements OnClickListener, TextWat
         //properties.put("http.proxyHost", "proxy-us.intel.com"); // US
         properties.put("http.proxyHost", "proxy.iind.intel.com"); // INDIA
         properties.put("http.proxyPort", "911");
+        
+//        //redirection to PrefsActivity
+        startActivity(new Intent(this, PrefsActivity.class));
     }
 
     //this is called when the button is clicker
