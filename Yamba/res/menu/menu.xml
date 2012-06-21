@@ -4,7 +4,15 @@
     <item
         android:id="@+id/itemPrefs"
         android:title="@string/titlePrefs"
-        android:icon="@android:drawable/ic_menu_preferences">
-    </item>
+        android:icon="@android:drawable/ic_menu_preferences"/>
+    <item 
+        android:id="@+id/itemServiceStart"
+        android:title="@string/titleServiceStart"
+        android:icon="@android:drawable/ic_media_play"/>
+        
+    <item 
+        android:id="@+id/itemServiceStop"
+        android:title="@string/titleServiceStop"
+        android:icon="@android:drawable/ic_media_pause"/>
 
 </menu>

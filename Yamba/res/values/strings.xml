@@ -20,4 +20,6 @@
     
     <!-- text in the option menu -->
     <string name="titlePrefs">Preferences</string>
+	<string name="titleServiceStart">Service start</string>
+	<string name="titleServiceStop">Service stop</string>
 </resources>
