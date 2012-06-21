@@ -39,6 +39,9 @@ public class StatusActivity extends Activity implements OnClickListener, TextWat
         textCount = (TextView) findViewById(R.id.textCount);
         textCount.setText("140");
         textCount.setTextColor(Color.GREEN);
+        
+        //if we do not have credentials redirect the user to prefs page
+        //TODO Daily lab 4
     }
 
     //this is called when the button is clicker

@@ -73,17 +73,20 @@ public class UpdaterService extends Service {
 					//get timeline from server
 					try{
 						timeline = yamba.getTwitter().getFriendsTimeline();
+						
+						//loop in the timeline and print the messages
+						if ( timeline!=null )
+						{
+							for (Twitter.Status status: timeline  )
+							{
+								Log.d(TAG,"Status: " + status.user.name + " - " +  status.text);
+							}
+						}						
 					}
 					catch (TwitterException e) {
 						Log.d(TAG, "Error on getting the timeline: ", e);
 					}
 					
-					//loop in the timeline and print the messages
-					for (Twitter.Status status: timeline  )
-					{
-						Log.d(TAG,"Status: " + status.user.name + " - " +  status.text);
-					}
-						
 					Log.d(TAG, "UpdaterService, updater ran.");		
 					Thread.sleep(DELAY);
 				} catch (InterruptedException e) {
