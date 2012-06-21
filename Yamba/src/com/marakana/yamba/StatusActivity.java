@@ -1,6 +1,5 @@
 package com.marakana.yamba;
 
-import java.util.Properties;
 import winterwell.jtwitter.Twitter;
 import android.app.Activity;
 import android.content.Intent;
@@ -40,12 +39,6 @@ public class StatusActivity extends Activity implements OnClickListener, TextWat
         textCount = (TextView) findViewById(R.id.textCount);
         textCount.setText("140");
         textCount.setTextColor(Color.GREEN);
-        
-        //setup the proxy
-        Properties properties = System.getProperties();
-        //properties.put("http.proxyHost", "proxy-us.intel.com"); // US
-        properties.put("http.proxyHost", "proxy.iind.intel.com"); // INDIA
-        properties.put("http.proxyPort", "911");
     }
 
     //this is called when the button is clicker

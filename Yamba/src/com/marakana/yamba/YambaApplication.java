@@ -1,5 +1,7 @@
 package com.marakana.yamba;
 
+import java.util.Properties;
+
 import winterwell.jtwitter.Twitter;
 import android.app.Application;
 import android.content.SharedPreferences;
@@ -11,6 +13,17 @@ public class YambaApplication extends Application implements OnSharedPreferenceC
 	private static final String TAG = "YambaApplication";
 	Twitter twitter = null;
 	SharedPreferences prefs;
+	private boolean serviceRunning;
+	
+	public boolean isServiceRunning()
+	{
+		return (this.serviceRunning);
+	}
+	
+	public void setServiceRunning (boolean serviceRunning)
+	{
+		this.serviceRunning = serviceRunning;
+	}
 
 	@Override
 	public void onCreate() {
@@ -18,6 +31,13 @@ public class YambaApplication extends Application implements OnSharedPreferenceC
         //get the username, password, apiroot from preferences
         this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
         this.prefs.registerOnSharedPreferenceChangeListener(this);	
+        
+        //setup the proxy
+        Properties properties = System.getProperties();
+        //properties.put("http.proxyHost", "proxy-us.intel.com"); // US
+        properties.put("http.proxyHost", "proxy.iind.intel.com"); // INDIA
+        properties.put("http.proxyPort", "911");
+        
         Log.d(TAG, "YambaApplication onCreate");
 	}
 
