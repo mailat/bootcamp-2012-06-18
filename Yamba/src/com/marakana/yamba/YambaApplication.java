@@ -7,6 +7,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 public class YambaApplication extends Application implements OnSharedPreferenceChangeListener {
@@ -61,9 +62,11 @@ public class YambaApplication extends Application implements OnSharedPreferenceC
 			password = this.prefs.getString("password", "");
 			apiRoot = this.prefs.getString("apiRoot", "http://yamba.marakana.com/api");
 			
-			//react on clicking the button
-			this.twitter = new Twitter(username, password);
-			this.twitter.setAPIRootUrl(apiRoot);
+			 if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)
+			          && !TextUtils.isEmpty(apiRoot)) { 
+				 this.twitter = new Twitter(username, password);
+				 this.twitter.setAPIRootUrl(apiRoot);
+			 }
 		}
 		
         return (this.twitter);
@@ -73,5 +76,9 @@ public class YambaApplication extends Application implements OnSharedPreferenceC
 	public synchronized void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		this.twitter = null;
 	}	
+	
+	public SharedPreferences getPrefs() {
+		return prefs;
+	}
 	
 }

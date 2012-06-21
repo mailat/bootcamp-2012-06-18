@@ -72,7 +72,8 @@ public class UpdaterService extends Service {
 				try {
 					//get timeline from server
 					try{
-						timeline = yamba.getTwitter().getFriendsTimeline();
+						if ( yamba.getTwitter() != null )
+							timeline = yamba.getTwitter().getFriendsTimeline();
 						
 						//loop in the timeline and print the messages
 						if ( timeline!=null )

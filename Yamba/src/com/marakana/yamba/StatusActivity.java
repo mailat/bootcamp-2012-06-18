@@ -41,7 +41,9 @@ public class StatusActivity extends Activity implements OnClickListener, TextWat
         textCount.setTextColor(Color.GREEN);
         
         //if we do not have credentials redirect the user to prefs page
-        //TODO Daily lab 4
+        if (((YambaApplication) getApplication() ).getPrefs().getString("username", null) == null) {
+        	startActivity(new Intent(this, PrefsActivity.class));
+        }
     }
 
     //this is called when the button is clicker
@@ -129,7 +131,8 @@ public class StatusActivity extends Activity implements OnClickListener, TextWat
 		{
 			case R.id.itemServiceStart:
 				//start the service
-				startService(new Intent(this, UpdaterService.class));
+				if ( !((YambaApplication) getApplication() ).isServiceRunning() )
+					startService(new Intent(this, UpdaterService.class));
 				break;
 			case R.id.itemServiceStop:
 				//stop the service
