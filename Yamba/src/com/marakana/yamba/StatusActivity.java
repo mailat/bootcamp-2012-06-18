@@ -4,12 +4,9 @@ import java.util.Properties;
 import winterwell.jtwitter.Twitter;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -23,13 +20,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StatusActivity extends Activity implements OnClickListener, TextWatcher, OnSharedPreferenceChangeListener {
+public class StatusActivity extends Activity implements OnClickListener, TextWatcher {
 	private static final String TAG = "StatusActivity";
 	EditText editText;
 	Button updateButton;
-	Twitter twitter = null;
 	TextView textCount;
-	SharedPreferences prefs;
 	
     /** Called when the activity is first created. */
     @Override
@@ -46,39 +41,12 @@ public class StatusActivity extends Activity implements OnClickListener, TextWat
         textCount.setText("140");
         textCount.setTextColor(Color.GREEN);
         
-        //get the username, password, apiroot from preferences
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        prefs.registerOnSharedPreferenceChangeListener(this);
-
         //setup the proxy
         Properties properties = System.getProperties();
         //properties.put("http.proxyHost", "proxy-us.intel.com"); // US
         properties.put("http.proxyHost", "proxy.iind.intel.com"); // INDIA
         properties.put("http.proxyPort", "911");
     }
-
-    /**
-     * getTwitter
-     * get a twitter instance with credentials from preferences
-     * 
-     * @return Twitter
-     */
-	private Twitter getTwitter() {
-		if ( twitter == null)
-		{
-			//get the values from the preferences
-			String username, password, apiRoot;
-			username = prefs.getString("username", "");
-			password = prefs.getString("password", "");
-			apiRoot = prefs.getString("apiRoot", "http://yamba.marakana.com/api");
-			
-			//react on clicking the button
-	        twitter = new Twitter(username, password);
-	        twitter.setAPIRootUrl(apiRoot);
-		}
-		
-        return (twitter);
-	}
 
     //this is called when the button is clicker
 	@Override
@@ -97,7 +65,7 @@ public class StatusActivity extends Activity implements OnClickListener, TextWat
 			Log.d(TAG, "we just click on the button, before message sent");
 			
 			try{
-				Twitter.Status status = getTwitter().setStatus(editText.getText().toString());
+				Twitter.Status status = ((YambaApplication) getApplication() ).getTwitter().setStatus(editText.getText().toString());
 				return (status.text);
 			}
 			catch (Throwable e)
@@ -170,10 +138,4 @@ public class StatusActivity extends Activity implements OnClickListener, TextWat
 		
 		return (true);
 	}
-
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		twitter = null;
-	}
-
 }
